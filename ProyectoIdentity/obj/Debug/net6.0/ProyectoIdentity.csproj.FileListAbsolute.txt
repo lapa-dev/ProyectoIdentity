@@ -68,3 +68,4 @@ F:\Repository\.net\ProyectoIdentity\ProyectoIdentity\bin\Debug\net6.0\Microsoft.
 F:\Repository\.net\ProyectoIdentity\ProyectoIdentity\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
 F:\Repository\.net\ProyectoIdentity\ProyectoIdentity\bin\Debug\net6.0\Newtonsoft.Json.dll
 F:\Repository\.net\ProyectoIdentity\ProyectoIdentity\obj\Debug\net6.0\ProyectoIdentity.MvcApplicationPartsAssemblyInfo.cs
+F:\Repository\.net\ProyectoIdentity\ProyectoIdentity\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Facebook.dll

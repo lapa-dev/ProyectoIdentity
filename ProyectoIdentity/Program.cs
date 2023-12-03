@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using ProyectoIdentity.Datos;
 using ProyectoIdentity.Servicios;
 
@@ -27,6 +28,12 @@ builder.Services.Configure<IdentityOptions>(options => {
     options.Password.RequireLowercase = true;
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
     options.Lockout.MaxFailedAccessAttempts = 3;
+});
+
+//Autenticación de facebbok
+builder.Services.AddAuthentication().AddFacebook(opcions => {
+    opcions.AppId = "326988356792292";
+    opcions.AppSecret = "f21b18895ee3c8d6f00f7ac7465e2d63";
 });
 
 //IEmailSender
