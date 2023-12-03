@@ -36,6 +36,12 @@ builder.Services.AddAuthentication().AddFacebook(opcions => {
     opcions.AppSecret = "f21b18895ee3c8d6f00f7ac7465e2d63";
 });
 
+//Autenticación de google
+builder.Services.AddAuthentication().AddGoogle(opcions => {
+    opcions.ClientId = "151196415320-nn6a84d4p12dt7k49nupisr0n2v6rtct.apps.googleusercontent.com";
+    opcions.ClientSecret = "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";
+});
+
 //IEmailSender
 builder.Services.AddTransient<IEmailSender, MailJetEmailSender>();
 

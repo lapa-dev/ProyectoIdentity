@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "5AFnipQWxrWlj//NQGHIy97istO6T2rqE9F518H5wcQ4X4vYTDXlRLi3vTr1TPSJ7P9FfOhSr8LpR9pRGzlFtQ==",
+  "dgSpecHash": "EGQZgZRmtLIwobTtXjQmpKRsToOcHqGtbZYFXfVDHuCAWMLA+4TgoVkonmfclZ10n73PNu/n7R1IeS5v5A2OTg==",
   "success": true,
   "projectFilePath": "F:\\Repository\\.net\\ProyectoIdentity\\ProyectoIdentity\\ProyectoIdentity.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lapa8\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\lapa8\\.nuget\\packages\\mailjet.api\\1.2.3\\mailjet.api.1.2.3.nupkg.sha512",
     "C:\\Users\\lapa8\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\6.0.1\\microsoft.aspnetcore.authentication.facebook.6.0.1.nupkg.sha512",
+    "C:\\Users\\lapa8\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\6.0.1\\microsoft.aspnetcore.authentication.google.6.0.1.nupkg.sha512",
     "C:\\Users\\lapa8\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.1\\microsoft.aspnetcore.cryptography.internal.6.0.1.nupkg.sha512",
     "C:\\Users\\lapa8\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.1\\microsoft.aspnetcore.cryptography.keyderivation.6.0.1.nupkg.sha512",
     "C:\\Users\\lapa8\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.1\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.1.nupkg.sha512",
