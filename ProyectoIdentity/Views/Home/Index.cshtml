@@ -4,5 +4,20 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+   
+    @if (User.Identity.IsAuthenticated)
+    {
+        var autentica2factores = ViewData["Autenticacion2FactoresActiva"];
+
+        if (autentica2factores != null && autentica2factores.ToString().ToLower() == "true") 
+        {
+            <a asp-action="EliminarAutenticador" asp-controller="Cuentas" class="btn btn-danger">Reseterar o Eliminar Autenticación de dos factores</a>
+        }
+        else
+        {
+            <a asp-action="ActivarAutenticador" asp-controller="Cuentas" class="btn btn-primary">Configurar Autenticación de dos factores</a>
+        }
+        
+        <br />
+    }
 </div>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "lZagC8OYNwEq4Pah29pF+UcAi2xA0iltUm6ZQYlG30U=",
+  "Hash": "0PBrdsDMJl8cNnwO91dA8eHcnl3BqjQ59OX6dpo+6sQ=",
   "Source": "ProyectoIdentity",
   "BasePath": "_content/ProyectoIdentity",
   "Mode": "Default",
@@ -1154,6 +1154,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\imagenes\\x-office-calendar-icon.png"
+    },
+    {
+      "Identity": "F:\\Repository\\.net\\ProyectoIdentity\\ProyectoIdentity\\wwwroot\\js\\qrcode.js",
+      "SourceId": "ProyectoIdentity",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Repository\\.net\\ProyectoIdentity\\ProyectoIdentity\\wwwroot\\",
+      "BasePath": "_content/ProyectoIdentity",
+      "RelativePath": "js/qrcode.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\qrcode.js"
     },
     {
       "Identity": "F:\\Repository\\.net\\ProyectoIdentity\\ProyectoIdentity\\wwwroot\\js\\site.js",
