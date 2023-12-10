@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoIdentity.Models;
+using ProyectoIdentity.Utils;
 using System.Diagnostics;
 
 namespace ProyectoIdentity.Controllers
@@ -27,7 +28,7 @@ namespace ProyectoIdentity.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = StringHandler.RolAdministrador)]
         public IActionResult Privacy()
         {
             return View();

@@ -1,0 +1,9 @@
+F:\Repository\.net\ProyectoIdentity\ProyectoIdentity\obj\Release\net6.0\ProyectoIdentity.csproj.AssemblyReference.cache
+F:\Repository\.net\ProyectoIdentity\ProyectoIdentity\obj\Release\net6.0\ProyectoIdentity.GeneratedMSBuildEditorConfig.editorconfig
+F:\Repository\.net\ProyectoIdentity\ProyectoIdentity\obj\Release\net6.0\ProyectoIdentity.AssemblyInfoInputs.cache
+F:\Repository\.net\ProyectoIdentity\ProyectoIdentity\obj\Release\net6.0\ProyectoIdentity.AssemblyInfo.cs
+F:\Repository\.net\ProyectoIdentity\ProyectoIdentity\obj\Release\net6.0\ProyectoIdentity.csproj.CoreCompileInputs.cache
+F:\Repository\.net\ProyectoIdentity\ProyectoIdentity\obj\Release\net6.0\ProyectoIdentity.MvcApplicationPartsAssemblyInfo.cs
+F:\Repository\.net\ProyectoIdentity\ProyectoIdentity\obj\Release\net6.0\ProyectoIdentity.MvcApplicationPartsAssemblyInfo.cache
+F:\Repository\.net\ProyectoIdentity\ProyectoIdentity\obj\Release\net6.0\ProyectoIdentity.RazorAssemblyInfo.cache
+F:\Repository\.net\ProyectoIdentity\ProyectoIdentity\obj\Release\net6.0\ProyectoIdentity.RazorAssemblyInfo.cs

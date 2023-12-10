@@ -2,15 +2,19 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ProyectoIdentity.Models;
+using ProyectoIdentity.Utils;
 using System.Security.Claims;
 using System.Text.Encodings.Web;
 
 namespace ProyectoIdentity.Controllers
 {
+    [Authorize]
     public class CuentasController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _rolManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IEmailSender _emailSender;
 
@@ -19,19 +23,113 @@ namespace ProyectoIdentity.Controllers
         public CuentasController(UserManager<IdentityUser> userManager, 
                                     SignInManager<IdentityUser> signInManager, 
                                     IEmailSender emailSender, 
-                                    UrlEncoder urlEncoder)
+                                    UrlEncoder urlEncoder,
+                                    RoleManager<IdentityRole> rolManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _urlEncoder = urlEncoder;
+            _rolManager = rolManager;
         }
-
+        [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index() => View();
 
+        #region Registro especial solo para los administradores
         [HttpGet]
+        public async Task<IActionResult> RegistroAdministrador(string returnurl = null)
+        {
+            ViewData["ReturnUrl"] = returnurl;
+            RegistroViewModel registroVM = new RegistroViewModel()
+            {
+                ListaRoles = GetRoles()
+            };
+            return View(registroVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegistroAdministrador(RegistroViewModel rgViewModel, string returnurl = null)
+        {
+            ViewData["ReturnUrl"] = returnurl;
+            returnurl = returnurl ?? Url.Content("~/");
+
+            if (ModelState.IsValid)
+            {
+                var usuario = new AppUsuario
+                {
+                    UserName = rgViewModel.Email,
+                    Email = rgViewModel.Email,
+                    Nombre = rgViewModel.Nombre,
+                    Url = rgViewModel.Url,
+                    Pais = rgViewModel.Pais,
+                    CodigoPais = rgViewModel.CodigoPais,
+                    Telefono = rgViewModel.Telefono,
+                    Direccion = rgViewModel.Direccion,
+                    FechaNacimiento = rgViewModel.FechaNacimiento,
+                    PhoneNumber = rgViewModel.Telefono,
+                    Ciudad = rgViewModel.Ciudad,
+                    Estado = rgViewModel.Estado
+                };
+
+                var resultado = await _userManager.CreateAsync(usuario, rgViewModel.Password);
+
+                if (resultado.Succeeded)
+                {
+                    //Para selección de l rol registro
+                    if (!string.IsNullOrEmpty(rgViewModel.RolSeleccionado))
+                        await _userManager.AddToRoleAsync(usuario, rgViewModel.RolSeleccionado);
+
+                    //Confirmación de email en el registro
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(usuario);
+
+                    var urlRetorno = Url.Action("ConfirmarEmail", "Cuentas", new { userId = usuario.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                    await _emailSender.SendEmailAsync(usuario.Email, "Confirmar su cuenta - ProyectoIdentity"
+                                                                    , $"Por favor confirme su cuenta dando clic aquí: <a href=\"{urlRetorno}\"/>");
+
+                    await _signInManager.SignInAsync(usuario, isPersistent: false);
+                    return LocalRedirect(returnurl);
+                }
+
+                ValidarErrores(resultado);
+            }
+
+            rgViewModel.ListaRoles = GetRoles();
+
+            return View(rgViewModel);
+        }
+
+        private List<SelectListItem> GetRoles()
+        {
+            List<SelectListItem> listaRoles = new List<SelectListItem>();
+            listaRoles.Add(new SelectListItem()
+            {
+                Value = StringHandler.RolRegistrado,
+                Text = StringHandler.RolRegistrado
+            });
+
+            listaRoles.Add(new SelectListItem()
+            {
+                Value = StringHandler.RolAdministrador,
+                Text = StringHandler.RolAdministrador
+            });
+
+            return listaRoles;
+        }
+        #endregion
+
+        [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Registro(string returnurl = null)
         {
+            //Para la creación de los roles
+            if (!await _rolManager.RoleExistsAsync("Administrador"))
+                await _rolManager.CreateAsync(new IdentityRole("Administrador"));
+
+            if (!await _rolManager.RoleExistsAsync("Registrado"))
+                await _rolManager.CreateAsync(new IdentityRole("Registrado"));
+
             ViewData["ReturnUrl"] = returnurl;
             RegistroViewModel registroVM = new RegistroViewModel();
             return View(registroVM);
@@ -39,6 +137,7 @@ namespace ProyectoIdentity.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Registro(RegistroViewModel rgViewModel, string returnurl = null)
         {
             ViewData["ReturnUrl"] = returnurl;
@@ -66,6 +165,9 @@ namespace ProyectoIdentity.Controllers
 
                 if (resultado.Succeeded)
                 {
+                    //Asignación del usuario que se registra al rol
+                    await _userManager.AddToRoleAsync(usuario, StringHandler.RolRegistrado);
+
                     //Confirmación de email en el registro
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(usuario);
                     
@@ -83,6 +185,7 @@ namespace ProyectoIdentity.Controllers
             return View(rgViewModel);
         }
 
+        [AllowAnonymous]
         private void ValidarErrores(IdentityResult resultado)
         {
             foreach (var error in resultado.Errors)
@@ -92,7 +195,8 @@ namespace ProyectoIdentity.Controllers
         }
 
         [HttpGet]
-        public IActionResult Acceso(string returnurl = null)
+        [AllowAnonymous]
+        public IActionResult Denegado(string returnurl = null)
         {
             ViewData["ReturnUrl"] = returnurl;
             return View();
@@ -100,6 +204,7 @@ namespace ProyectoIdentity.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Acceso(AccesoViewModel accViewModel, string returnurl = null)
         {
             ViewData["ReturnUrl"] = returnurl;
@@ -135,11 +240,15 @@ namespace ProyectoIdentity.Controllers
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
+
+        #region Recuperar Contraseña
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult OlvidoPassword() => View();
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> OlvidoPassword(OlvidoPasswordViewModel opViewModel)
         {
             if (ModelState.IsValid)
@@ -166,12 +275,12 @@ namespace ProyectoIdentity.Controllers
         [AllowAnonymous]
         public ActionResult ConfirmacionOlvidoPassword() => View();
 
-        //Recuperar Contraseña
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult ResetPassword(string code=null) => code == null ? View("Error") : View();
+        public ActionResult ResetPassword(string code = null) => code == null ? View("Error") : View();
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(RecuperaPasswordViewModel rpdViewModel)
         {
@@ -198,6 +307,7 @@ namespace ProyectoIdentity.Controllers
         public ActionResult ConfirmacionRecuperaPassword() => View();
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult> ConfirmarEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -211,8 +321,9 @@ namespace ProyectoIdentity.Controllers
 
             return View(resultado.Succeeded ? "ConfirmarEmail" : "Error");
         }
+        #endregion
 
-        //Confirmación aplicaiones externas
+        #region Confirmación aplicaiones externas
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -229,7 +340,7 @@ namespace ProyectoIdentity.Controllers
         public async Task<IActionResult> AccesoExternoCallback(string returnurl = null, string error = null)
         {
             returnurl = returnurl ?? Url.Content("~/");
-            if (error !=null)
+            if (error != null)
             {
                 ModelState.AddModelError(string.Empty, $"Error en el acceso externo {error}");
                 return View(nameof(Acceso));
@@ -237,9 +348,7 @@ namespace ProyectoIdentity.Controllers
 
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
-            {
                 return RedirectToAction(nameof(Acceso));
-            }
 
             //Acceder con el usuario en el proveedor externo
             var resultado = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
@@ -254,7 +363,7 @@ namespace ProyectoIdentity.Controllers
             //Para la validación de dos factores
             if (resultado.RequiresTwoFactor)
             {
-                return RedirectToAction(nameof(VerificarCodigoAutenticador), new { returnurl = returnurl});
+                return RedirectToAction(nameof(VerificarCodigoAutenticador), new { returnurl = returnurl });
             }
             else
             {
@@ -264,7 +373,7 @@ namespace ProyectoIdentity.Controllers
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
                 var nombre = info.Principal.FindFirstValue(ClaimTypes.Name);
 
-                return View("ConfirmacionAccesoExterno", new ConfirmacionAccesoExternoViewModel { Email = email, Name = nombre});
+                return View("ConfirmacionAccesoExterno", new ConfirmacionAccesoExternoViewModel { Email = email, Name = nombre });
             }
         }
 
@@ -302,8 +411,9 @@ namespace ProyectoIdentity.Controllers
             ViewData["ReturnUrl"] = returnurl;
             return View(caeViewModel);
         }
+        #endregion
 
-        //Autenticación de dos factores
+        #region Autenticación de dos factores
         [HttpGet]
         public async Task<IActionResult> ActivarAutenticador()
         {
@@ -354,8 +464,8 @@ namespace ProyectoIdentity.Controllers
         [HttpGet]
         public IActionResult ConfirmacionAutenticador() => View();
 
-
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> VerificarCodigoAutenticador(bool recordarDatos, string returnurl = null)
         {
             var usuario = await _signInManager.GetTwoFactorAuthenticationUserAsync();
@@ -367,7 +477,7 @@ namespace ProyectoIdentity.Controllers
 
             ViewData["ReturnUrl"] = returnurl;
 
-            return View(new VerificarAutenticadorViewModel { ReturnUrl = returnurl, RecordarDatos = recordarDatos});
+            return View(new VerificarAutenticadorViewModel { ReturnUrl = returnurl, RecordarDatos = recordarDatos });
         }
 
         [HttpPost]
@@ -376,7 +486,7 @@ namespace ProyectoIdentity.Controllers
         public async Task<IActionResult> VerificarCodigoAutenticador(VerificarAutenticadorViewModel vaViewModel)
         {
             vaViewModel.ReturnUrl = vaViewModel.ReturnUrl ?? Url.Content("~/");
-            
+
             if (!ModelState.IsValid)
                 return View(vaViewModel);
 
@@ -391,11 +501,16 @@ namespace ProyectoIdentity.Controllers
                 ModelState.AddModelError(String.Empty, "Còdigo Inválido");
                 return View(vaViewModel);
             }
-               
-
-
-
         }
+        #endregion
 
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Acceso(string returnurl = null)
+        {
+            ViewData["ReturnUrl"] = returnurl;
+            returnurl = returnurl ?? Url.Content("~/");
+            return View();
+        }
     }
 }

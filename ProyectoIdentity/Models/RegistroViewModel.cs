@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoIdentity.Models
 {
@@ -46,5 +47,13 @@ namespace ProyectoIdentity.Models
 
         [Required(ErrorMessage = "El estado es obligatorio")]
         public bool Estado { get; set; }
+
+        //Para seleccion de roles
+
+        [Display(Name = "Seleccionar Rol")]
+        public IEnumerable<SelectListItem> ListaRoles { get; set; }
+
+        [Display(Name = "Rol Seleccionado")]
+        public string RolSeleccionado { get; set; }
     }
 }
