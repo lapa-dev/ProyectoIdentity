@@ -17,8 +17,7 @@ namespace ProyectoIdentity.Controllers
         private readonly RoleManager<IdentityRole> _rolManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IEmailSender _emailSender;
-
-        public readonly UrlEncoder _urlEncoder;
+        private readonly UrlEncoder _urlEncoder;
 
         public CuentasController(UserManager<IdentityUser> userManager, 
                                     SignInManager<IdentityUser> signInManager, 
@@ -32,6 +31,7 @@ namespace ProyectoIdentity.Controllers
             _urlEncoder = urlEncoder;
             _rolManager = rolManager;
         }
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Index() => View();
