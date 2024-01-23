@@ -15,6 +15,46 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = F:\Repository\.net\ProyectoIdentity\ProyectoIdentity
 build_property._RazorSourceGeneratorDebug = 
 
+[F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Autorizacion/AccesoAdministrador.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b3JpemFjaW9uXEFjY2Vzb0FkbWluaXN0cmFkb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Autorizacion/AccesoAdministradorPermisoCrear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b3JpemFjaW9uXEFjY2Vzb0FkbWluaXN0cmFkb3JQZXJtaXNvQ3JlYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Autorizacion/AccesoAdministradorPermisoCrearEditarBorrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b3JpemFjaW9uXEFjY2Vzb0FkbWluaXN0cmFkb3JQZXJtaXNvQ3JlYXJFZGl0YXJCb3JyYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Autorizacion/AccesoAdministradorPermisoEditarBorrar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b3JpemFjaW9uXEFjY2Vzb0FkbWluaXN0cmFkb3JQZXJtaXNvRWRpdGFyQm9ycmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Autorizacion/AccesoAutenticado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b3JpemFjaW9uXEFjY2Vzb0F1dGVudGljYWRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Autorizacion/AccesoPublico.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b3JpemFjaW9uXEFjY2Vzb1B1YmxpY28uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Autorizacion/AccesoRegistrado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b3JpemFjaW9uXEFjY2Vzb1JlZ2lzdHJhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Autorizacion/AccesoUsuario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b3JpemFjaW9uXEFjY2Vzb1VzdWFyaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Autorizacion/AccesoUsuarioAdministrador.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b3JpemFjaW9uXEFjY2Vzb1VzdWFyaW9BZG1pbmlzdHJhZG9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Autorizacion/AccesoUsuarioYAdministrador.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b3JpemFjaW9uXEFjY2Vzb1VzdWFyaW9ZQWRtaW5pc3RyYWRvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Cuentas/Acceso.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VlbnRhc1xBY2Nlc28uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -81,6 +121,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Roles/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcQ3JlYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Roles/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcRWRpdGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Roles/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/Repository/.net/ProyectoIdentity/ProyectoIdentity/Views/Shared/Error.cshtml]

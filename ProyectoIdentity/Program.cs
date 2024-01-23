@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+锘縰sing Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,12 +7,12 @@ using ProyectoIdentity.Servicios;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Conexi髇 a sql server
+//Conexi贸n a sql server
 builder.Services.AddDbContext<ApplicationDbContext>(opciones => 
     opciones.UseSqlServer(builder.Configuration.GetConnectionString("ConexionSql"))
 );
 
-//Agregar el servicio identity a la palicaci髇
+//Agregar el servicio identity a la palicaci贸n
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 //Url de retorno al acceder
@@ -30,16 +30,31 @@ builder.Services.Configure<IdentityOptions>(options => {
     options.Lockout.MaxFailedAccessAttempts = 3;
 });
 
-//Autenticaci髇 de facebbok
+//Autenticaci贸n de facebbok
 builder.Services.AddAuthentication().AddFacebook(opcions => {
     opcions.AppId = "326988356792292";
     opcions.AppSecret = "f21b18895ee3c8d6f00f7ac7465e2d63";
 });
 
-//Autenticaci髇 de google
+//Autenticaci贸n de google
 builder.Services.AddAuthentication().AddGoogle(opcions => {
     opcions.ClientId = "151196415320-nn6a84d4p12dt7k49nupisr0n2v6rtct.apps.googleusercontent.com";
     opcions.ClientSecret = "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";
+});
+
+//Soporte para autorizaci锟絥 basada en directivas/Policy
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Administrador", policy => policy.RequireRole("Administrador"));
+    options.AddPolicy("Registrado", policy => policy.RequireRole("Registrado"));
+    options.AddPolicy("Usuario", policy => policy.RequireRole("Usuario"));
+    options.AddPolicy("UsuarioYAdministrador", policy => policy.RequireRole("Administrador").RequireRole("Usuario"));
+
+    //Uso de claims
+    options.AddPolicy("AdministradorCrear", policy => policy.RequireRole("Administrador").RequireClaim("Crear", "True"));
+    options.AddPolicy("AdministradorEditarBorrar", policy => policy.RequireRole("Administrador").RequireClaim("Editar", "True").RequireClaim("Borrar", "True"));
+    options.AddPolicy("AdministradorCrearEditarBorrar", policy => policy.RequireRole("Administrador").RequireClaim("Crear", "True")
+    .RequireClaim("Editar", "True").RequireClaim("Borrar", "True"));
 });
 
 //IEmailSender
@@ -63,7 +78,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-//Se agrega ka autenticaci髇
+//Se agrega ka autenticaci贸n
 app.UseAuthentication();
 
 app.UseAuthorization();
