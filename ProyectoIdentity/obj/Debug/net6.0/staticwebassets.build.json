@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0PBrdsDMJl8cNnwO91dA8eHcnl3BqjQ59OX6dpo+6sQ=",
+  "Hash": "x4hZjZZMWpgbcuZLkkIry1nK6VPZyZrIU71Dw+4gryQ=",
   "Source": "ProyectoIdentity",
   "BasePath": "_content/ProyectoIdentity",
   "Mode": "Default",
@@ -1137,6 +1137,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\imagenes\\calenda_2.png"
+    },
+    {
+      "Identity": "F:\\Repository\\.net\\ProyectoIdentity\\ProyectoIdentity\\wwwroot\\imagenes\\X-office-calendar.svg",
+      "SourceId": "ProyectoIdentity",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Repository\\.net\\ProyectoIdentity\\ProyectoIdentity\\wwwroot\\",
+      "BasePath": "_content/ProyectoIdentity",
+      "RelativePath": "imagenes/X-office-calendar.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imagenes\\X-office-calendar.svg"
     },
     {
       "Identity": "F:\\Repository\\.net\\ProyectoIdentity\\ProyectoIdentity\\wwwroot\\imagenes\\x-office-calendar-icon.png",

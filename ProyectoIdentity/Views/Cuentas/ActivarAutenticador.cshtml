@@ -1,12 +1,12 @@
 ﻿@model AutenticacionDosFactoresViewModel
-
-<p><strong>Por favor ingrese el siguiente código en su APP Autenticador: </strong></p>@Model.Token
+<p><strong>Por favor ingrese el siguiente código en su APP Autenticador:</strong></p>@Model.Token
 <p>O también puedes escanear el siguiente código QR</p>
 <div id="codigoQR"></div>
 
 <form method="post">
-    <input type="hidden" asp-for="Token" />
-    <hr />
+    <input type="hidden" asp-for="Token"/>
+
+    <hr/>
     <div class="row">
         <div class="col-sm-7">
             <div class="col-md-12">
@@ -18,7 +18,7 @@
          <div class="col-sm-5">
              <div class="col-sm-5">
                  <div class="col-md-12 pt-4">
-                     <button type="submit" class="btn btn-primary mt-3" > Enviar <i class="bi bi-arrow-right-cicle-full"></i></button>
+                     <button type="submit" class="btn btn-primary mt-3"><i class="bi bi-arrow-right-circle-fill"></i> Enviar</button>
                  </div>
              </div>
         </div>
@@ -26,10 +26,10 @@
 </form>
 
 @section Scripts{
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-    <script src="/js/qrcode.js"></script>
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/js/qrcode.js"></script>
     <script type="text/javascript">
         new QRCode(document.getElementById("codigoQR"), "@Model.UrlCodigoQR");
     </script>
 }
-

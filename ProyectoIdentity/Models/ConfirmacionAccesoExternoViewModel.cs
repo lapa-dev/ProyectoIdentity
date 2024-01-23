@@ -8,7 +8,7 @@ namespace ProyectoIdentity.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required]       
         public string Name { get; set; }
     }
 }

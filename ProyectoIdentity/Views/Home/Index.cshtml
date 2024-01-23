@@ -4,20 +4,16 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-   
     @if (User.Identity.IsAuthenticated)
     {
-        var autentica2factores = ViewData["Autenticacion2FactoresActiva"];
+        var autentica2Factores = ViewData["Autenticacion2FactoresActiva"];
+        if (autentica2Factores != null && autentica2Factores.ToString().ToLower() == "true")
+        {
+            <a asp-action="EliminarAutenticador" asp-controller="Cuentas" class="btn btn-danger">Resetear o Eliminar Autenticación de dos factores</a>
 
-        if (autentica2factores != null && autentica2factores.ToString().ToLower() == "true") 
-        {
-            <a asp-action="EliminarAutenticador" asp-controller="Cuentas" class="btn btn-danger">Reseterar o Eliminar Autenticación de dos factores</a>
-        }
-        else
-        {
+        }else{
             <a asp-action="ActivarAutenticador" asp-controller="Cuentas" class="btn btn-primary">Configurar Autenticación de dos factores</a>
-        }
-        
-        <br />
+            <br />
+        }        
     }
 </div>

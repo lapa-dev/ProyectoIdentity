@@ -6,6 +6,6 @@ namespace ProyectoIdentity.Models
     {
         [Required(ErrorMessage = "El email es obligatorio")]
         [EmailAddress]
-        public string Email { get; set; }
+        public string Email { get; set; }        
     }
 }

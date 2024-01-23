@@ -10,7 +10,7 @@ namespace ProyectoIdentity.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "La contraseña es obligatoria")]
-        [StringLength(50, ErrorMessage = "El {0} debe estar entre al menos {2} catecteres de longitud", MinimumLength = 5)]
+        [StringLength(50, ErrorMessage = "El {0} debe estar entre al menos {2} caracteres de longitud", MinimumLength = 5)]
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
         public string Password { get; set; }
@@ -25,35 +25,24 @@ namespace ProyectoIdentity.Models
         public string Nombre { get; set; }
 
         public string Url { get; set; }
-
-        [Display(Name = "Código País")]
-        public int CodigoPais { get; set; }
-
-        [Display(Name = "Teléfono")]
+        public Int32 CodigoPais { get; set; }
         public string Telefono { get; set; }
-
         [Required(ErrorMessage = "El país es obligatorio")]
-        [Display(Name = "País")]
         public string Pais { get; set; }
         public string Ciudad { get; set; }
-
-        [Display(Name = "Dirección")]
         public string Direccion { get; set; }
-
-        [Required(ErrorMessage = "La fecha de nacimiento es obligatorio")]
-
-        [Display(Name = "Fecha Nacimiento")]
+        [Required(ErrorMessage = "La fecha es obligatoria")]
+        [Display(Name = "Fecha de nacimiento")]
         public DateTime FechaNacimiento { get; set; }
 
         [Required(ErrorMessage = "El estado es obligatorio")]
         public bool Estado { get; set; }
 
-        //Para seleccion de roles
-
-        [Display(Name = "Seleccionar Rol")]
+        //Para selección de roles
+        [Display(Name = "Seleccionar rol")]
         public IEnumerable<SelectListItem> ListaRoles { get; set; }
-
-        [Display(Name = "Rol Seleccionado")]
+        [Display(Name = "Rol seleccionado")]
         public string RolSeleccionado { get; set; }
     }
+
 }

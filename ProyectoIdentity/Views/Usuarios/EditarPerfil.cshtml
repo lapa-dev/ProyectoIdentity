@@ -1,83 +1,95 @@
 ﻿@model ProyectoIdentity.Models.AppUsuario
 
 @{
-    ViewData["Title"] = "Editar perfil de usuario";
+    ViewData["Title"] = "Editar Perfil";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="card">
     <div class="card-body">
-        <h3 class="card-title text-center">Registro de usuario</h3>
-        <form asp-controller="Usuarios" asp-action="EditarPerfil" method="post" role="form">
-            
-            <input type="hidden" asp-for="Id" />
-            
-            <div class="text-danger" asp-validation-summary="All"></div>
+        <h3 class="card-title text-center">Editar perfil de usuario</h3>
+        <form asp-controller="Usuarios" asp-action="EditarPerfil" method="post">
 
+         <input type="hidden" asp-for="Id" />
+
+        <div class="text-danger" asp-validation-summary="All"></div>
+            
             <div class="row mt-4">
                 <div class="col-sm-6">
+
                     <div class="mb-3">
                         <label asp-for="Nombre" class="col-md-2"></label>
-                        <input asp-for="Nombre" class="form-control" />
+                         <input asp-for="Nombre" class="form-control" placeholder="Ingresa tu nombre"/>
                         <span asp-validation-for="Nombre" class="text-danger"></span>
                     </div>
-                    <div class="mb-3">
+
+                     <div class="mb-3">
                         <label asp-for="Email" class="col-md-2"></label>
-                         <input asp-for="Email" class="form-control" disabled />
+                         <input asp-for="Email" class="form-control" disabled/>
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
+
                      <div class="mb-3">
                         <label asp-for="Url" class="col-md-2"></label>
-                        <input asp-for="Url" class="form-control" />
+                         <input asp-for="Url" class="form-control" placeholder="Ingresa tu url"/>
                         <span asp-validation-for="Url" class="text-danger"></span>
                     </div>
-                    <div class="mb-3">
-                        <label asp-for="Telefono" class="col-md-2"></label>
-                        <input asp-for="Telefono" class="form-control" />
-                        <span asp-validation-for="Telefono" class="text-danger"></span>
-                    </div>
+
                      <div class="mb-3">
                         <label asp-for="CodigoPais" class="col-md-2"></label>
-                        <input asp-for="CodigoPais" class="form-control" />
+                         <input asp-for="CodigoPais" class="form-control" placeholder="Ingresa el código de tu país"/>
                         <span asp-validation-for="CodigoPais" class="text-danger"></span>
                     </div>
-                    <div class="mb-3">
+
+                     <div class="mb-3">
+                        <label asp-for="Telefono" class="col-md-2"></label>
+                         <input asp-for="Telefono" class="form-control" placeholder="Ingresa tu teléfono"/>
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+
+                     <div class="mb-3">
                         <label asp-for="Pais" class="col-md-2"></label>
-                        <input asp-for="Pais" class="form-control" />
+                         <input asp-for="Pais" class="form-control" placeholder="Ingresa tu país" />
                         <span asp-validation-for="Pais" class="text-danger"></span>
                     </div>
+
                 </div>
-           
+
                 <div class="col-sm-6">
-                     <div class="mb-3">
+
+                    <div class="mb-3">
                         <label asp-for="Ciudad" class="col-md-2"></label>
-                        <input asp-for="Ciudad" class="form-control" />
+                         <input asp-for="Ciudad" class="form-control" placeholder="Ingresa tu ciudad"/>
                         <span asp-validation-for="Ciudad" class="text-danger"></span>
                     </div>
-                    <div class="mb-3">
+
+                     <div class="mb-3">
                         <label asp-for="Direccion" class="col-md-2"></label>
-                        <input asp-for="Direccion" class="form-control" />
+                         <input asp-for="Direccion" class="form-control" placeholder="Ingresa tu dirección"/>
                         <span asp-validation-for="Direccion" class="text-danger"></span>
                     </div>
-                    <div class="mb-3">
+
+                     <div class="mb-3">
                         <label asp-for="FechaNacimiento" class="col-md-4"></label>
-                        <input type="text" asp-for="FechaNacimiento" class="form-control" id="datepicker" placeholder="1990-10-05" />
+                         <input type="text" asp-for="FechaNacimiento" class="form-control"  id="datepicker" placeholder="Ejemplo: 1990-10-05"/>
                         <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
-                    </div>
+                    </div>                              
+
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-10 offset-2">
-                    <button type="submit" class="btn btn-outline-success w-75 btn-lg">Editar <i class="bi bi-arrow-right-cicle-fill"></i></button>
+                     <button type="submit" class="btn btn-success w-75 btn-lg">Editar <i class="bi bi-arrow-right-circle-fill"></i></button>
                 </div>
             </div>
+
         </form>
     </div>
 </div>
 
 @section Scripts{
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial"); 
-    }
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
